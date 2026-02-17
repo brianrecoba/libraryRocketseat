@@ -1,0 +1,137 @@
+
+/* Styles for the book container and book cards */
+
+.no-books-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.no-books-message {
+    font-size: var(--font-size-md);
+    color: var(--color-gray-400);
+    margin-top: 7.5rem;
+
+}
+
+/* Book Cards Grid */
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.book-card {
+    margin-top: 2.4rem;
+    padding: 1.6rem;
+    border: 0.1rem solid var(--color-gray-200);
+    border-radius: 0.8rem;
+    width: 23rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.book-image {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 26rem;
+    border-radius: 0.8rem;
+
+}  
+
+.book-card h3 {
+    font-size: var(--font-size-md);
+    color: var(--color-gray-500);
+}
+
+.book-author {
+    font-size: var(--font-size-md);
+    color: var(--color-gray-400);
+    margin-top: -1rem;
+    
+}
+
+.book-status{
+    font-size: var(--font-size-badge);
+    padding: 0.8rem 0.4rem;
+    width: fit-content;
+    border-radius: 0.8rem;
+}
+
+.book-status[data-status="Lido"] {
+    color: var(--color-green-base);
+    background-color: var(--color-green-light) ;
+}
+
+.book-status[data-status="Lendo"] {
+    color: var(--color-yellow-base);
+    background-color: var(--color-yellow-light);
+}
+
+.book-status[data-status="Quero ler"] {
+    color: var(--color-blue-base);
+    background-color: var(--color-blue-light);
+}
+
+.book-coments{
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-400);
+}
+
+.book-rating {
+    height: 1.6rem;
+    display: flex;
+    align-items: center;   
+    
+}
+.book-rating svg {
+    margin-top: 0.8rem;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.book-coments {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    }
+
+.book-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.4rem;
+}
+
+.book-actions button {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--color-gray-200);
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.7rem;
+    background-color: var(--color-white);
+
+}
+
+.book-actions button:hover {
+    background-color: var(--color-gray-200);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-actions button:last-child {
+    color: var(--color-red-bright);
+}
+
+.book-actions svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 1.2rem;
+}

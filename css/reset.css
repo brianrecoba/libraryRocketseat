@@ -1,0 +1,54 @@
+ :root {
+     /* Colors */
+     --color-white: #FFFFFF;
+     --color-gray-100: #f3f3f5;
+     --color-gray-200: #E1E1E6;
+     --color-gray-300: #D1D5DC;
+     --color-gray-400: #717182;
+     --color-gray-500: #0A0A0A;
+
+     /* Navy Colors */
+     --color-navy-dark: #211f42
+     --color-navy-low: #030213
+
+     /* Accent Colors */
+
+     --color-yellow-bright: #fdc700;
+     --color-red-bright: #D4183D;
+     --color-yellow-base: #894b00;
+     --color-blue-base: #193cb8; 
+     --color-green-base: #016630;  
+     --color-yellow-light: #fef9c2;
+     --color-blue-light: #dbeafe;
+     --color-green-light: #dcfce7;
+
+
+     /* Font Sizes */
+     --font-size-badge: 1.2rem;
+     --font-size-sm: 1.4rem;
+     --font-size-md: 1.6rem;
+     --font-size-lg: 1.8rem;
+     --font-size-xl: 2.4rem;
+
+     --font-weight-regular: 400;
+     --font-weight-medium: 500;
+     --font-weight-bold: 600;
+
+
+
+     /* Font Families */
+     --font-family-default: 'Inter', sans-serif;
+
+ }
+
+ html {
+     font-family: var(--font-family-default);
+     font-size: 62.5%;
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     padding: 3.2rem 6.4rem;
+ }
+
+ /*Header*/
+

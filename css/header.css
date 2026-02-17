@@ -1,0 +1,42 @@
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ header div {
+     display: flex;
+     align-items: center;
+     gap: 1.2rem;
+ }
+
+ header h1 {
+     font-size: var(--font-size-md);
+     color: var(--color-gray-500);
+     font-weight: var(--font-weight-regular);
+ }
+
+ header img {
+     width: 3.2rem;
+     height: 3.2rem;
+ }
+
+ #btn-add-button {
+     background-color: var(--color-gray-500);
+     font-weight: var(--font-weight-regular);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: var(--color-white);
+     border: none;
+     padding: 0.8rem 1.6rem;
+     border-radius: 0.8rem;
+     font-size: var(--font-size-sm);
+     cursor: pointer;
+ }
+
+ #btn-add-button svg {
+     width: 1.6rem;
+     height: 1.6rem;
+     fill: var(--color-white);
+ }
