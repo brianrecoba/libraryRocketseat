@@ -25,6 +25,7 @@ const trash = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns
 <path d="M19.9996 7.99951V5.3335C19.9996 4.97987 19.8591 4.64019 19.609 4.39014C19.359 4.14029 19.0201 3.99951 18.6666 3.99951H13.3336C12.98 3.99951 12.6403 4.14009 12.3903 4.39014C12.1402 4.64019 11.9996 4.97987 11.9996 5.3335V7.99951C11.9996 8.73589 11.403 9.3335 10.6666 9.3335C9.93025 9.3335 9.33362 8.73589 9.33362 7.99951V5.3335C9.33362 4.27263 9.75437 3.25454 10.5045 2.50439C11.2547 1.75425 12.2728 1.3335 13.3336 1.3335H18.6666C19.7273 1.3335 20.7446 1.75445 21.4948 2.50439C22.2449 3.25454 22.6666 4.27263 22.6666 5.3335V7.99951C22.6666 8.73578 22.0698 9.33332 21.3336 9.3335C20.5972 9.3335 19.9996 8.73589 19.9996 7.99951Z" fill="#D4183D"/>
 </svg>`;
 
+const bookCount = document.getElementById('book-count');
 const bookContainer = document.getElementById('main');
 const btnAddBooks = document.getElementById('btn-add-button')
 const modal = document.getElementById('book-modal-container')
@@ -32,6 +33,7 @@ const closeModal = document.getElementById('close-modal')
 const starContainer = document.getElementById('star-rating')
 const btnSubmit = document.getElementById('btn-submit')
 const form = document.getElementById('book-form')
+
 
 const books = [];
 
@@ -133,17 +135,22 @@ function getAllBooks() {
 
     if (storageBook.length === 0) {
         bookContainer.classList.add('no-books-container');
+        bookCount.style.display = 'none';
         bookContainer.innerHTML = `
             <p class="no-books-message">
                 Nenhum livro adicionado ainda. Comece adicionando seu primeiro livro!
             </p>`;
         return;
-    }
-
+    }else {
+    
     bookContainer.classList.add('container')
+    bookCount.style.display = '';
 
     renderBooks(storageBook)
     
+    }
+
+   
 }
 
 function deleteBook(id){
