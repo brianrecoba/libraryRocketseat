@@ -1,0 +1,49 @@
+/* Configurações para celular */
+
+@media (max-width: 768px) {
+    .book-count {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #form-search {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+
+    }
+
+    #form-search fieldset {
+        width: 95%;
+        margin-bottom: 0.8rem;
+    }
+
+    #select-group {
+        width: 100%;
+        margin: 0;
+    }
+
+    .container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr ;
+    }
+
+    .book-card {
+        width: auto;
+        
+    }
+
+
+    #book-modal-container {
+        width: auto;
+        padding: 0.8rem;
+    }    
+
+    .book-modal {
+        width: auto;
+        padding: 2.4rem;
+    }
+    
+}
