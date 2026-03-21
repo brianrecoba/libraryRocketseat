@@ -52,9 +52,8 @@ function handleSubmit(event) {
     const selectedRating = document.querySelector('input[name="avaliation"]:checked');
     const ratingValue = selectedRating ? selectedRating.value : 0;
 
-    console.log("Estrela selecionada no DOM:", document.querySelector('input[name="avaliation"]:checked')?.value);
-
-    const newBook = {
+    
+    const bookData = {
         id: Date.now(),
         title : document.getElementById('title').value.trim(),
         author: document.getElementById('author').value.trim(),
@@ -68,7 +67,7 @@ function handleSubmit(event) {
         const bookIndex = currentBooks.findIndex(book => book.id === isEditing);
 
         if (bookIndex !== -1) {
-            currentBooks[bookIndex] = { id: isEditing, ...newBook };
+            currentBooks[bookIndex] = { id: isEditing, ...bookData };
         }
 
         isEditing = null;
@@ -81,6 +80,8 @@ function handleSubmit(event) {
     
     localStorage.setItem('mybooks', JSON.stringify(currentBooks))
     event.target.reset()
+
+    if (typeof updateDashboard === "function") updateDashboard();
     
     getAllBooks()
     modal.close()
@@ -144,7 +145,8 @@ function getAllBooks() {
     }else {
     
     bookContainer.classList.add('container')
-    bookCount.style.display = '';
+
+    updateBookCount()
 
     renderBooks(storageBook)
     
@@ -152,6 +154,33 @@ function getAllBooks() {
 
    
 }
+
+function updateBookCount() {
+    const rawData = localStorage.getItem('mybooks')
+    const storageBook = rawData ? JSON.parse(rawData) : []
+
+    const allBook = storageBook.length
+    const read = storageBook.filter(book =>  book.status === 'Lido').length
+    const reading = storageBook.filter(book =>  book.status === 'Lendo').length
+    const wantRead = storageBook.filter(book =>  book.status === 'Quero ler').length
+    
+    if(storageBook.length === 0){
+        bookCount.style.display = 'none';
+    }
+
+    bookCount.style.display = '';
+    
+    
+    document.getElementById('count-all').innerText = allBook;
+    document.getElementById('count-want').innerText = wantRead;
+    document.getElementById('count-reading').innerText = reading;
+    document.getElementById('count-read').innerText = read;
+
+    
+
+
+}
+
 
 function deleteBook(id){
     const idToNumber = Number(id)

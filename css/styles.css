@@ -151,7 +151,21 @@
     border-radius: 0.8rem;
     height: 9rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    gap: 1rem;
+    padding: 1rem;
     font-size: var(--font-size-md);
+}
+
+.card-count-name {
+    font-size: var(--font-size-md);
+    color: var(--color-gray-400);
+    
+}
+
+.card-count-value {
+    font-size: var(--font-size-xl);
+    color: var(--color-gray-500);
 }

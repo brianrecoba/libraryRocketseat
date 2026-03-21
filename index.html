@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -37,10 +38,22 @@
     </header>
     <nav >
         <div class="book-count" id="book-count">
-            <div class="card-book-count"></div>
-            <div class="card-book-count"></div>
-            <div class="card-book-count"></div>
-            <div class="card-book-count"></div>
+            <div class="card-book-count" >
+                <span id="count-all" class="card-count-value"></span>
+                <span class="card-count-name">Total</span>
+            </div>
+            <div class="card-book-count" >
+                <span id="count-want" class="card-count-value"></span>
+                <span class="card-count-name">Quero Ler</span>
+            </div>
+            <div class="card-book-count" >
+                <span id="count-reading" class="card-count-value"></span>
+                <span class="card-count-name">Lendo</span>
+            </div>
+            <div class="card-book-count" >
+                <span id="count-read" class="card-count-value"></span>
+                <span class="card-count-name">Lidos</span>
+            </div>
         </div>
         <form action="" role="search" id="form-search">
             <fieldset>
@@ -56,7 +69,7 @@
             <select name="" id="select-group">
                 <option value="all">Todos os status</option>
                 <option value="Lido">Lido</option>
-                <option value="Não lidos">Não lidos</option>
+                <option value="Quero ler">Quero Ler</option>
                 <option value="Lendo">Lendo</option>
             </select>
         </form>
@@ -110,7 +123,7 @@
                     placeholder="Suas anotações sobre o livro (opcional)"></textarea>
 
                 <div class="form-buttons">
-                    <button type="submit" id="btn-submit" class="btn-add">Adicionar</button>
+                    <button type="submit" id="btn-submit" class="btn-add" >Adicionar</button>
                     <button type="reset" class="btn-cancel">Cancelar</button>
                 </div>
                 </div>
