@@ -35,6 +35,7 @@ const form = document.getElementById('book-form')
 
 const books = [];
 
+let isEditing = null;
 
 function saveToLocalStorage() {
     localStorage.setItem('mybooks', JSON.stringify(books))
@@ -61,11 +62,24 @@ function handleSubmit(event) {
         coments: document.getElementById('coments').value.trim()
     }
 
-    currentBooks.push(newBook)
-    event.target.reset()
+    if(isEditing !== null){
+        const bookIndex = currentBooks.findIndex(book => book.id === isEditing);
+
+        if (bookIndex !== -1) {
+            currentBooks[bookIndex] = { id: isEditing, ...newBook };
+        }
+
+        isEditing = null;
+
+    }else {
+        const newBook = { id: Date.now(), ...bookData };
+        currentBooks.push(newBook);
+    }
+
     
     localStorage.setItem('mybooks', JSON.stringify(currentBooks))
-
+    event.target.reset()
+    
     getAllBooks()
     modal.close()
 }
@@ -146,6 +160,44 @@ function deleteBook(id){
 
 }
 
+function editBook(id){
+    isEditing = Number(id)
+    btnSubmit.innerHTML = 'Salvar alterações'
+    const rawData = localStorage.getItem('mybooks')
+    const storageBook = rawData ? JSON.parse(rawData) : []
+
+    const bookFound = storageBook.find(item => item.id === isEditing)
+    
+    console.log(bookFound)
+
+    const title = document.getElementById('title')
+    const author = document.getElementById('author')
+    const image = document.getElementById('url')
+    const status = document.getElementById('status')
+    const coments = document.getElementById('coments')
+    title.value = bookFound.title
+    author.value = bookFound.author
+    image.value = bookFound.urlImage
+    status.value = bookFound.status
+
+    const foundStar = bookFound.avaliation
+    const starInput = document.querySelector(`input[name="avaliation"][value="${foundStar}"]`)
+    if (starInput) {
+    starInput.checked = true;
+    }   
+
+    coments.value = bookFound.coments
+
+    modal.showModal()
+    
+
+    
+    
+    
+
+
+}
+
 function renderBooks(booksList) {
      bookContainer.innerHTML = ''
 
@@ -163,7 +215,7 @@ function renderBooks(booksList) {
                 </div>
                 <p class="book-coments">${book.coments}</p>
                 <div class="book-actions">
-                    <button class="edit-button" >${pencil} Editar</button>
+                    <button class="edit-button" data-id="${book.id}" onclick="editBook(${book.id})">${pencil} Editar</button>
                     <button class="delete-button" data-id="${book.id}" onclick="deleteBook(${book.id})">${trash} Excluir</button>
                 </div>
             </div>
@@ -175,26 +227,38 @@ function renderBooks(booksList) {
 }
 
 const inputSearch = document.getElementById('inputFilter')
-
+const statusValue = document.getElementById('select-group')
 /* Filtrar */
 
-inputSearch.addEventListener('input',(event) => {
-    const nameFilted = event.target.value.toLowerCase()
-
+function applyFilters() {
     const rawData = localStorage.getItem('mybooks')
     const storageBook = rawData ? JSON.parse(rawData) : []
 
+    const searchTerm = inputSearch.value.toLowerCase()
+    const filterValue = statusValue.value
+
     const bookFiltered = storageBook.filter(book => {
-        return book.title.toLowerCase().includes(nameFilted) ||  book.author.toLowerCase().includes(nameFilted)
+    
+        const matchesText = book.title.toLowerCase().includes(searchTerm) ||  book.author.toLowerCase().includes(searchTerm)
+        const matchesStatus = (filterValue === 'all') || (book.status === filterValue)
+
+        return matchesText && matchesStatus
     })
 
     renderBooks(bookFiltered)
 
-})
+}
+
+inputSearch.addEventListener('input',applyFilters)
+statusValue.addEventListener('change', applyFilters)
 
 /* Open and Close modal functions */
 
 btnAddBooks.addEventListener('click', () => {
+    idSendoEditado = null; 
+    
+    
+    form.reset();
     modal.showModal()
 })
 
